@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otra Página</title>
+  <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <h1>Datos de Personajes</h1>
+
+    <div class="main__cards cards" id="cartasContainer">
+        <!-- Cartas se agregarán aquí dinámicamente -->
+    </div>
+
+    <script>
+        // Obtener la cadena JSON almacenada en LocalStorage
+        const formDataJSON = localStorage.getItem("formData");
+
+        // Convertir la cadena JSON de nuevo a un objeto
+        const formData = JSON.parse(formDataJSON);
+
+        // Crear una nueva carta basada en los datos del formulario
+        const nuevaCarta = document.createElement("div");
+        nuevaCarta.className = "cards__card card";
+        nuevaCarta.innerHTML = `
+            <center><h2 class="card__heading">${formData.nombre}</h2></center>
+            <center><img src="${formData.imagen}" width="200px" height="280px"></center>
+            <ul role="list" class="card__bullets flow">
+                <li>Vida: ${formData.vida}</li>
+                <li>Daño de ataque: ${formData.cara1}</li>
+                <li>La velocidad de movimiento es de ${formData.cara2} unidades.</li>
+                <li>El tamaño es de ${formData.cara3} unidades.</li>
+            </ul>
+            <a href="#" class="card__cta cta">Like</a>
+        `;
+
+        // Agregar la nueva carta al contenedor
+        document.getElementById("cartasContainer").appendChild(nuevaCarta);
+    </script>
+</body>
+</html>

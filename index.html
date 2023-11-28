@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Final FDS</title>
+  <link rel="stylesheet" href="./Css/style.css">
+</head>
+
+<body>
+  <main class="main flow">
+    <h1 class="main__heading">
+      Galeria de Imagenes de Personajes del Lol
+    </h1>
+    <div id="test" class="main__heading"></div>
+    <center>
+      <nav role='navigation'>
+        <a href="#" id="about">Home</a>
+        <a href="../pages/login.html" id="home">Login</a>
+        <a href="./pages/aboutus.html" id="home">About Us</a>
+      </nav>
+    </center>
+
+    <div class="main__cards cards">
+      <div class="cards__inner">
+        <div class="cards__card card">
+          <center>
+            <h2 class="card__heading">Akali</h2>
+          </center>
+          <center>
+            <img src="./Assets/akali-league-of-legends-5k-l0.jpg" width="300px" height="190px">
+          </center>
+          <ul role="list" class="card__bullets flow">
+            <li>Vida: 690.00</li>
+            <li>Daño de ataque: 69.00</li>
+            <li>La velocidad de movimiento de Akali es de 340 unidades.</li>
+            <li>El tamaño de Akali es de 65 unidades.</li>
+          </ul>
+          <a href="#" class="card__cta cta">Like</a>
+        </div>
+        <div class="cards__card card">
+          <center>
+            <h2 class="card__heading">Diana</h2>
+          </center>
+          <center>
+            <img src="./Assets/diana-league-of-legends-game-4k-8v.jpg" width="300px" height="190px">
+          </center>
+          <ul role="list" class="card__bullets flow">
+            <li>Vida: 640.00</li>
+            <li>Regeneración de vida: 3.50</li>
+            <li>La velocidad de movimiento de Diana es de 325 unidades.</li>
+            <li>El tamaño de Diana es de 65 unidades.</li>
+          </ul>
+          <a href="#" class="card__cta cta">Like</a>
+        </div>
+      </div>
+    </div>
+
+    <center><h1>Datos de Personajes</h1></center>
+
+    <div class="main__cards cards" id="cartasContainer">
+        <!-- Cartas se agregarán aquí dinámicamente -->
+    </div>
+    <script>
+        // Obtener las cartas almacenadas en LocalStorage
+        const cartasGuardadas = JSON.parse(localStorage.getItem("cartas")) || [];
+
+        // Crear cartas basadas en los datos almacenados
+        cartasGuardadas.forEach(function (carta) {
+            const nuevaCarta = document.createElement("div");
+            nuevaCarta.className = "cards__card card";
+            nuevaCarta.innerHTML = `
+                <center><h2 class="card__heading">${carta.nombre}</h2></center>
+                <center><img src="${carta.imagen}" width="200px" height="280px"></center>
+                <ul role="list" class="card__bullets flow">
+                    <li>Vida: ${carta.vida}</li>
+                    <li>Daño de ataque: ${carta.cara1}</li>
+                    <li>La velocidad de movimiento es de ${carta.cara2} unidades.</li>
+                    <li>El tamaño es de ${carta.cara3} unidades.</li>
+                </ul>
+                <a href="#" class="card__cta cta">Like</a>
+            `;
+
+            // Agregar la nueva carta al contenedor
+            document.getElementById("cartasContainer").appendChild(nuevaCarta);
+        });
+    </script>
+  </main>
+</body>
+ 
+<script src="./Script/javas1.js"></script>
+
+</html>

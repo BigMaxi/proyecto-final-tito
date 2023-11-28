@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="../Css/formulario.css">
+
+</head>
+
+<body>
+
+    <form id="miFormulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre del personaje a crear" required>
+
+      <input type="number" id="vida" name="vida" placeholder="Ponga en numeros la vida de su personaje" required>
+
+        <label for="cara1">Caracteristica 1:</label>
+        <input type="number" id="cara1" name="cara1" placeholder="Ponga en numeros el daño de ataque de su personaje" required>
+
+        <label for="cara2">Caracteristica 2:</label>
+        <input type="number" id="cara2" name="cara2" placeholder="Ponga en numeros la velocidad de movimiento de su personaje"  required>
+
+        <label for="cara3">Caracteristica 3:</label>
+        <input type="number" id="cara3" name="cara3" placeholder="Ponga en numeros el tamaño de unidades de su personaje" required>
+
+        <label for="imagen">URL de la imagen:</label>
+        <input type="url" id="imagen" name="imagen" placeholder="Coloque la imagen del personaje que quiere ver en la tarjeta" required>
+
+      <button class="custom-btn btn-12" type="submit">
+        <span>Submit</span>
+        <span>Click!</span>
+      </button>
+    </form>
+
+  <script>
+      document.getElementById("miFormulario").addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Obtener los valores del formulario
+          const nombre = document.getElementById("nombre").value;
+          const vida = document.getElementById("vida").value;
+          const cara1 = document.getElementById("cara1").value;
+          const cara2 = document.getElementById("cara2").value;
+          const cara3 = document.getElementById("cara3").value;
+          const imagen = document.getElementById("imagen").value;
+
+          // Obtener las cartas existentes de LocalStorage o inicializar un array vacío
+          const cartasGuardadas = JSON.parse(localStorage.getItem("cartas")) || [];
+
+          // Agregar la nueva carta al array
+          cartasGuardadas.push({
+              nombre: nombre,
+              vida: vida,
+              cara1: cara1,
+              cara2: cara2,
+              cara3: cara3,
+              imagen: imagen
+          });
+
+          // Convertir el array a una cadena JSON y guardar en LocalStorage
+          localStorage.setItem("cartas", JSON.stringify(cartasGuardadas));
+
+          // Redirigir a la otra página
+          window.location.href = "../index.html";
+      });
+  </script>
+</body>
+</html>
